@@ -1,5 +1,82 @@
 {
-"users":[{"id":1, "name":"Arthur"}],
-"albums":[],
-"photos":[]
+  "users": [
+    {
+      "id": 1,
+      "name": "Arthur"
+    },
+    {
+      "name": "Ms. Irving Feil",
+      "id": 2
+    },
+    {
+      "name": "Crystal Langworth",
+      "id": 3
+    },
+    {
+      "name": "Mae Zulauf",
+      "id": 4
+    },
+    {
+      "name": "Clark Reichel",
+      "id": 5
+    },
+    {
+      "name": "Sadie Fahey",
+      "id": 6
+    },
+    {
+      "name": "Sue Sauer",
+      "id": 7
+    },
+    {
+      "name": "Calvin Lubowitz",
+      "id": 8
+    },
+    {
+      "name": "Alison Lang I",
+      "id": 9
+    },
+    {
+      "name": "Ramona Goldner",
+      "id": 10
+    },
+    {
+      "name": "Corey Heller III",
+      "id": 11
+    },
+    {
+      "name": "Ann Veum",
+      "id": 12
+    },
+    {
+      "name": "Mr. Wilbert Kemmer",
+      "id": 13
+    },
+    {
+      "name": "Mrs. Vickie Quigley",
+      "id": 14
+    },
+    {
+      "name": "Harriet Goldner",
+      "id": 15
+    },
+    {
+      "name": "Mrs. Taylor Jones",
+      "id": 16
+    },
+    {
+      "name": "Timmy Conroy",
+      "id": 17
+    },
+    {
+      "name": "Katrina Sporer",
+      "id": 18
+    },
+    {
+      "name": "Dan Ritchie",
+      "id": 19
+    }
+  ],
+  "albums": [],
+  "photos": []
 }
