@@ -29,6 +29,7 @@ const UsersSlice = createSlice({
     builder.addCase(addUser.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
+      console.log(action.payload);
       state.data.push(action.payload);
     });
 
