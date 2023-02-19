@@ -37,4 +37,21 @@ app.post("/users/post", async (req, res) => {
   res.json({ id, username, title, date });
 });
 
+app.delete("/users/:id", async (req, res) => {
+  console.log(req.body);
+  try {
+    const { userId } = req.body;
+    console.log(userId);
+
+    const response = await pool.query("DELETE FROM app_users WHERE id = $1", [
+      userId,
+    ]);
+
+    res.json(userId);
+  } catch (error) {
+    console.log(userId);
+    console.log(error);
+  }
+});
+
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));

@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchUsers, addUser } from "../store";
 import Skeleton from "./Skeleton";
 import Button from "./Button";
-import { faker } from "@faker-js/faker";
 import { useThunk } from "../hooks/useThunk";
-import axios from "axios";
+import UsersListItem from "./UsersListItem";
 
 export function UsersList() {
   const { data } = useSelector((state) => state.users);
@@ -31,10 +30,8 @@ export function UsersList() {
     }
   };
 
-  const renderedUsers = data.map((user, i) => (
-    <div className="w-full rounded border mb-3 p-3" key={i}>
-      {user.username}
-    </div>
+  const renderedUsers = data.map((user) => (
+    <UsersListItem user={user} key={user.id} />
   ));
 
   if (isCreatingUser) {
