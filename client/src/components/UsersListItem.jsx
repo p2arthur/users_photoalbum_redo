@@ -8,6 +8,7 @@ function UsersListItem({ user }) {
   const [doDeleteUser, isLoading, error] = useThunk(deleteUser);
 
   const handleDeleteUser = () => {
+    console.log(user);
     doDeleteUser(user);
   };
 

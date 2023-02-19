@@ -5,6 +5,7 @@ import Skeleton from "./Skeleton";
 import Button from "./Button";
 import { useThunk } from "../hooks/useThunk";
 import UsersListItem from "./UsersListItem";
+import { faker } from "@faker-js/faker";
 
 export function UsersList() {
   const { data } = useSelector((state) => state.users);
@@ -23,7 +24,8 @@ export function UsersList() {
 
   const handleUserAdd = async () => {
     try {
-      doCreateUser();
+      console.log(data);
+      doCreateUser({ username: faker.name.fullName() });
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -35,7 +37,7 @@ export function UsersList() {
   ));
 
   if (isCreatingUser) {
-    console.log("creatinh user");
+    console.log("creating user");
   }
   if (isLoadingUserError) {
     return <div>Error fetching users...</div>;
@@ -60,7 +62,6 @@ export function UsersList() {
       ) : (
         "0 Users"
       )}
-      {}
     </div>
   );
 }
