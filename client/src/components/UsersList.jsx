@@ -42,8 +42,8 @@ export function UsersList() {
   }
 
   return (
-    <div>
-      <div className="flex flex-row justify-between m-3">
+    <div className="p-3">
+      <div className="flex justify-between m-3">
         <h2 className="m2 text-xl">Users</h2>
         <Button
           className="w-15 h-10"
