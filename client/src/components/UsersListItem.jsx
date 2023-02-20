@@ -3,6 +3,7 @@ import { IoTrashOutline } from "react-icons/io5";
 import { deleteUser } from "../store";
 import { useThunk } from "../hooks/useThunk";
 import ExpandablePanel from "./ExpandablePanel";
+import AlbumsList from "./AlbumsList";
 
 function UsersListItem({ user }) {
   const [doDeleteUser, isLoading, error] = useThunk(deleteUser);
@@ -26,7 +27,11 @@ function UsersListItem({ user }) {
     </>
   );
 
-  return <ExpandablePanel header={header}>CONTENT</ExpandablePanel>;
+  return (
+    <ExpandablePanel header={header}>
+      <AlbumsList user={user} />
+    </ExpandablePanel>
+  );
 }
 
 export default UsersListItem;
