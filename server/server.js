@@ -33,13 +33,29 @@ app.delete("/users/:id", async (req, res) => {
   try {
     const { userId } = req.body;
 
-    const response = await pool.query("DELETE FROM users WHERE id = $1", [
-      userId,
-    ]);
+    await pool.query("DELETE FROM users WHERE id = $1", [userId]);
 
     res.json(userId);
   } catch (error) {
     console.log(userId);
+    console.log(error);
+  }
+});
+
+//--------------------------------------------------------------------------
+//Albums
+app.get("/albums?:userId", async (req, res) => {
+  try {
+    const userId = req.query.userId;
+    console.log(userId);
+
+    const response = await pool.query(
+      "SELECT * FROM albums WHERE user_id = $1",
+      [userId]
+    );
+
+    res.json(response.rows);
+  } catch (error) {
     console.log(error);
   }
 });
