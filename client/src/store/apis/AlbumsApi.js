@@ -20,6 +20,19 @@ const albumsApi = createApi({
           };
         },
       }),
+
+      postAlbums: builder.query({
+        query: (album) => {
+          return {
+            url: `/albums`,
+            params: {
+              title: album.title,
+              user_id: album.user_id,
+            },
+            method: "POST",
+          };
+        },
+      }),
     };
   },
 });

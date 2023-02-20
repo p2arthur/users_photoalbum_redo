@@ -44,6 +44,8 @@ app.delete("/users/:id", async (req, res) => {
 
 //--------------------------------------------------------------------------
 //Albums
+
+//1- Albums get
 app.get("/albums?:userId", async (req, res) => {
   try {
     const userId = req.query.userId;
@@ -58,6 +60,19 @@ app.get("/albums?:userId", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+//2- Albums post
+app.post("/albums", async (req, res) => {
+  const { title, user_id } = req.body;
+  console.log(title, user_id);
+
+  const response = await pool.query(
+    "INSERT INTO albums (title, user_id) VALUES ($1,$2)",
+    [title, user_id]
+  );
+
+  res.json(response.rows);
 });
 
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
