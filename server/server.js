@@ -64,12 +64,12 @@ app.get("/albums?:userId", async (req, res) => {
 
 //2- Albums post
 app.post("/albums", async (req, res) => {
-  const { title, user_id } = req.body;
-  console.log(title, user_id);
+  const { title, userId } = req.body;
+  console.log(title, userId);
 
   const response = await pool.query(
-    "INSERT INTO albums (title, user_id) VALUES ($1,$2)",
-    [title, user_id]
+    "INSERT INTO albums (title, user_id) VALUES ($1, $2)",
+    [title, userId]
   );
 
   res.json(response.rows);

@@ -21,14 +21,11 @@ const albumsApi = createApi({
         },
       }),
 
-      postAlbums: builder.query({
+      addAlbum: builder.mutation({
         query: (album) => {
           return {
             url: `/albums`,
-            params: {
-              title: album.title,
-              user_id: album.user_id,
-            },
+            body: { title: album.title, userId: album.userId },
             method: "POST",
           };
         },
@@ -37,5 +34,5 @@ const albumsApi = createApi({
   },
 });
 
-export const { useFetchAlbumsQuery } = albumsApi;
+export const { useFetchAlbumsQuery, useAddAlbumMutation } = albumsApi;
 export { albumsApi };
