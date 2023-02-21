@@ -10,6 +10,8 @@ const albumsApi = createApi({
   endpoints(builder) {
     return {
       fetchAlbums: builder.query({
+        //Adding a tag to make the request be reexecuted once we make a mutation to the database
+        providesTags: ["Album"],
         query: (userId) => {
           return {
             url: `/albums`,
@@ -22,6 +24,8 @@ const albumsApi = createApi({
       }),
 
       addAlbum: builder.mutation({
+        //Whenever we run this mutation, we are going to look at all the queries that uses this tag and invalidate it to refetch the data
+        invalidatesTags: ["Album"],
         query: (album) => {
           return {
             url: `/albums`,

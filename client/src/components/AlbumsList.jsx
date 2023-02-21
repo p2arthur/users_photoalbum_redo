@@ -5,14 +5,11 @@ import ExpandablePanel from "./ExpandablePanel";
 import { faker } from "@faker-js/faker";
 
 function AlbumsList({ user }) {
-  console.log(user);
   const { data, error, isLoading } = useFetchAlbumsQuery(user.id);
-
   const [addAlbum, results] = useAddAlbumMutation();
+  console.log(results);
 
   const handleAddAlbum = () => {
-    console.log("addAlbum");
-    console.log(user.id);
     const album = { title: faker.commerce.productName(), userId: user.id };
     addAlbum(album);
   };
