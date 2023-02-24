@@ -50,6 +50,7 @@ export function UsersList() {
         <Button
           className="w-15 h-10"
           loading={isCreatingUser}
+          loadingMessage="Adding user"
           onClick={handleUserAdd}
         >
           + Add new user

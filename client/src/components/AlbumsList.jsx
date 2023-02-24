@@ -10,8 +10,7 @@ function AlbumsList({ user }) {
   console.log(results);
 
   const handleAddAlbum = () => {
-    const album = { title: faker.commerce.productName(), userId: user.id };
-    addAlbum(album);
+    addAlbum({ title: faker.commerce.productName(), userId: user.id });
   };
 
   let content;
@@ -35,7 +34,13 @@ function AlbumsList({ user }) {
     <div>
       <div className="flex items-center justify-between mb-3">
         Albums by: {user.username}{" "}
-        <Button onClick={handleAddAlbum}>Add new album +</Button>
+        <Button
+          loading={results.isLoading}
+          loadingMessage="Adding album"
+          onClick={handleAddAlbum}
+        >
+          Add new album +
+        </Button>
       </div>
       <div>{content}</div>
     </div>
