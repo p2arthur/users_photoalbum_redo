@@ -2,6 +2,7 @@ import className from "classnames";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 function Button({
+  loadingMessage,
   loading,
   children,
   primary,
@@ -36,7 +37,7 @@ function Button({
     <button {...rest} disabled={loading} className={classes}>
       {loading ? (
         <div className="flex align-middle justify-center">
-          <div className="mr-2">Adding user </div>
+          <div className="mr-2">{loadingMessage}</div>
           <AiOutlineLoading3Quarters className="animate-spin h-5" />
         </div>
       ) : (
