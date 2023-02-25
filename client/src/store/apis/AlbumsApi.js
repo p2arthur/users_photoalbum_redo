@@ -21,7 +21,10 @@ const albumsApi = createApi({
     return {
       fetchAlbums: builder.query({
         //Adding a tag to make the request be reexecuted once we make a mutation to the database
-        providesTags: (result, error, user) => [{ type: "Album", id: user }],
+        providesTags: (result, errror, user) => {
+          console.log(user);
+          return [{ type: "Albums", id: user }];
+        },
         query: (userId) => {
           return {
             url: `/albums`,
@@ -35,9 +38,10 @@ const albumsApi = createApi({
 
       addAlbum: builder.mutation({
         //Whenever we run this mutation, we are going to look at all the queries that uses this tag and invalidate it to refetch the data
-        invalidatesTags: (result, error, album) => [
-          { type: "Album", id: album.userId },
-        ],
+        invalidatesTags: (result, error, album) => {
+          console.log(album);
+          return [{ type: "Albums", id: album.userId }];
+        },
         query: (album) => {
           return {
             url: `/albums`,
@@ -46,9 +50,26 @@ const albumsApi = createApi({
           };
         },
       }),
+
+      removeAlbum: builder.mutation({
+        invalidatesTags: (response, error, album) => [
+          { type: "Albums", id: album.userId },
+        ],
+        query: (album) => {
+          return {
+            url: `/albums/${album.id}`,
+            params: { albumId: album.id },
+            method: "DELETE",
+          };
+        },
+      }),
     };
   },
 });
 
-export const { useFetchAlbumsQuery, useAddAlbumMutation } = albumsApi;
+export const {
+  useFetchAlbumsQuery,
+  useAddAlbumMutation,
+  useRemoveAlbumMutation,
+} = albumsApi;
 export { albumsApi };

@@ -37,7 +37,6 @@ app.delete("/users/:id", async (req, res) => {
 
     res.json(userId);
   } catch (error) {
-    console.log(userId);
     console.log(error);
   }
 });
@@ -72,7 +71,22 @@ app.post("/albums", async (req, res) => {
     [title, userId]
   );
 
-  res.json(response.rows);
+  res.json(res.rows);
+});
+
+//3- Remove albums
+app.delete("/albums/:id", async (req, res) => {
+  try {
+    const { albumId } = req.query;
+    console.log(albumId);
+    const response = await pool.query("DELETE FROM albums WHERE id = $1", [
+      albumId,
+    ]);
+
+    res.json(response.rows);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));

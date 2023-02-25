@@ -1,11 +1,11 @@
 import { useFetchAlbumsQuery, useAddAlbumMutation } from "../store";
 import Skeleton from "./Skeleton";
 import Button from "./Button";
-import ExpandablePanel from "./ExpandablePanel";
+import AlbumsListItem from "./AlbumsListItem";
 import { faker } from "@faker-js/faker";
 
 function AlbumsList({ user }) {
-  const { data, error, isLoading } = useFetchAlbumsQuery(user.id);
+  const { data, error, isFetching } = useFetchAlbumsQuery(user.id);
   const [addAlbum, results] = useAddAlbumMutation();
   console.log(results);
 
@@ -15,18 +15,13 @@ function AlbumsList({ user }) {
 
   let content;
 
-  if (isLoading) {
+  if (isFetching) {
     content = <Skeleton times={3} className="w-full h-10" />;
   } else if (error) {
     content = <div>Error fetching albums</div>;
   } else {
     content = data.map((album) => {
-      const header = album.title;
-      return (
-        <ExpandablePanel key={album.id} header={header}>
-          Photo
-        </ExpandablePanel>
-      );
+      return <AlbumsListItem album={album} key={album.id} />;
     });
   }
 
