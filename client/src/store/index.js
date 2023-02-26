@@ -28,4 +28,8 @@ export {
   useRemoveAlbumMutation,
 } from "./apis/AlbumsApi";
 
-export { useFetchPhotosQuery, usePostPhotoMutation } from "./apis/PhotosApi";
+export {
+  useFetchPhotosQuery,
+  usePostPhotoMutation,
+  useRemovePhotoMutation,
+} from "./apis/PhotosApi";
