@@ -105,6 +105,19 @@ app.get("/photos?:album_id", async (req, res) => {
   res.json(response.rows);
 });
 
+app.post("/photos", async (req, res) => {
+  const { photoUrl, albumId, photoTitle } = req.body;
+
+  console.log(photoUrl, albumId, photoTitle);
+
+  const response = await pool.query(
+    "INSERT INTO photos (url, album_id, title) VALUES ($1, $2, $3)",
+    [photoUrl, albumId, photoTitle]
+  );
+
+  res.json(response.rows);
+});
+
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
 
