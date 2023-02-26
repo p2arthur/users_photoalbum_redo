@@ -63,12 +63,12 @@ app.get("/albums?:userId", async (req, res) => {
 
 //2- Albums post
 app.post("/albums", async (req, res) => {
-  const { title, userId } = req.body;
-  console.log(title, userId);
+  const { title, user_id } = req.body;
+  console.log(req.body);
 
   const response = await pool.query(
     "INSERT INTO albums (title, user_id) VALUES ($1, $2)",
-    [title, userId]
+    [title, user_id]
   );
 
   res.json(res.rows);
@@ -114,6 +114,16 @@ app.post("/photos", async (req, res) => {
     "INSERT INTO photos (url, album_id, title) VALUES ($1, $2, $3)",
     [photoUrl, albumId, photoTitle]
   );
+
+  res.json(response.rows);
+});
+
+app.delete("/photos/:id", async (req, res) => {
+  const { photoId } = req.query;
+  console.log(photoId);
+  const response = await pool.query("DELETE FROM photos WHERE id = $1", [
+    photoId,
+  ]);
 
   res.json(response.rows);
 });
