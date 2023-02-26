@@ -7,9 +7,9 @@ import { faker } from "@faker-js/faker";
 function AlbumsList({ user }) {
   const { data, error, isFetching } = useFetchAlbumsQuery(user.id);
   const [addAlbum, results] = useAddAlbumMutation();
-  console.log(results);
 
   const handleAddAlbum = () => {
+    console.log(user);
     addAlbum({ title: faker.commerce.productName(), userId: user.id });
   };
 
