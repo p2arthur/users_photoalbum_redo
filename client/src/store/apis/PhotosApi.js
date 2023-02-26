@@ -23,10 +23,24 @@ const photosApi = createApi({
           };
         },
       }),
+
+      postPhoto: builder.mutation({
+        query: (photo) => {
+          return {
+            url: "/photos",
+            body: {
+              photoUrl: photo.photoUrl,
+              albumId: photo.albumId,
+              photoTitle: photo.title,
+            },
+            method: "POST",
+          };
+        },
+      }),
     };
   },
 });
 
-export const { useFetchPhotosQuery } = photosApi;
+export const { useFetchPhotosQuery, usePostPhotoMutation } = photosApi;
 
 export { photosApi };
