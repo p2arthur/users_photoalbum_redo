@@ -89,4 +89,23 @@ app.delete("/albums/:id", async (req, res) => {
   }
 });
 
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+
+//Photos Endpoints
+app.get("/photos?:album_id", async (req, res) => {
+  const albumId = req.query.albumId;
+  console.log(albumId);
+
+  const response = await pool.query(
+    "SELECT * FROM photos WHERE album_id = $1",
+    [albumId]
+  );
+
+  res.json(response.rows);
+});
+
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
