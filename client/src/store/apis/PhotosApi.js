@@ -15,6 +15,7 @@ const photosApi = createApi({
   endpoints(builder) {
     return {
       fetchPhotos: builder.query({
+        providesTags: ["Photos"],
         query: (albumId) => {
           return {
             url: "/photos",
@@ -25,6 +26,7 @@ const photosApi = createApi({
       }),
 
       postPhoto: builder.mutation({
+        invalidatesTags: ["Photos"],
         query: (photo) => {
           return {
             url: "/photos",
@@ -37,10 +39,25 @@ const photosApi = createApi({
           };
         },
       }),
+
+      removePhoto: builder.mutation({
+        invalidatesTags: ["Photos"],
+        query: (photo) => {
+          return {
+            url: `/photos/${photo.id}`,
+            params: { photoId: photo.id },
+            method: "DELETE",
+          };
+        },
+      }),
     };
   },
 });
 
-export const { useFetchPhotosQuery, usePostPhotoMutation } = photosApi;
+export const {
+  useFetchPhotosQuery,
+  usePostPhotoMutation,
+  useRemovePhotoMutation,
+} = photosApi;
 
 export { photosApi };
