@@ -41,7 +41,7 @@ const albumsApi = createApi({
         query: (album) => {
           return {
             url: `/albums`,
-            body: { title: album.title, userId: album.userId },
+            body: { title: album.title, user_id: album.userId },
             method: "POST",
           };
         },
