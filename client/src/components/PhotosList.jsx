@@ -13,7 +13,7 @@ function PhotosList({ album }) {
   const handlePostPhoto = () => {
     console.log(album);
     postPhoto({
-      photoUrl: faker.image.abstract(),
+      photoUrl: faker.image.abstract(255, 255, true),
       albumId: album.id,
       title: faker.commerce.product(),
     });
@@ -22,7 +22,7 @@ function PhotosList({ album }) {
   let content;
 
   if (isFetching) {
-    content = <Skeleton times={4} className="w-full h-10" />;
+    content = <Skeleton times={4} className="w-full h-48" />;
   } else if (error) {
     content = <div>Error</div>;
   } else {
@@ -35,12 +35,18 @@ function PhotosList({ album }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-end">
-        <Button onClick={handlePostPhoto} className="bg-green-500 text-white">
+      <div className="flex items-center justify-between">
+        <h3 className="text-xl font-bold">Photos at album: {album.title}</h3>
+        <Button
+          loadingMessage="Adding photo"
+          loading={isPostingPhoto.isLoading}
+          onClick={handlePostPhoto}
+          className="bg-green-500 text-white border-none hover:bg-green-600 transition-all rounded"
+        >
           Add new photo +
         </Button>
       </div>
-      <div>{content}</div>
+      <div className="grid grid-cols-4 gap-10 mt-10">{content}</div>
     </div>
   );
 }
