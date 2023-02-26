@@ -9,14 +9,14 @@ function ExpandablePanel({ header, children }) {
   };
 
   return (
-    <div className="w-full rounded border mb-3 gap-5">
+    <div className="w-full rounded mb-2 gap-5 bg-slate-600 text-white">
       <div
         onClick={handleClick}
-        className="px-3 py-3 flex justify-between items-center cursor-pointer select-none"
+        className="px-3 py-3 flex justify-between items-center cursor-pointer select-none bg-slate-800 text-white rounded"
       >
         {header} <div>{expanded ? <GoChevronUp /> : <GoChevronDown />}</div>
       </div>
-      {expanded && <div className="p-3 border-t-2">{children}</div>}
+      {expanded && <div className="p-3 ">{children}</div>}
     </div>
   );
 }

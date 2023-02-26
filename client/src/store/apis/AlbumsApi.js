@@ -1,9 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-//DEV ONLY!--REMOVE FOR PRODUCTION
-const pause = (duration) =>
-  new Promise((resolve) => setTimeout(resolve, duration));
-
+import { pause } from "../../utils/util";
 const albumsApi = createApi({
   reducerPath: "albums",
 
